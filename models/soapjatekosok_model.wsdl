@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap-enc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap-env="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://localhost/nb1/models/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost/nb1/models/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/nb1/models/">
+      <xsd:complexType name="Jatekosok">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="jatekosok" type="tns:JatekosArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Jatekos">
+        <xsd:all>
+          <xsd:element name="vezeteknev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="utonev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Csapatok">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="vezeteknev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="utonev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="csapatok" type="tns:CsapatArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Csapat">
+        <xsd:all>
+          <xsd:element name="klubid" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="csapatnev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Posztok">
+        <xsd:all>
+          <xsd:element name="hibakod" type="xsd:int" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="uzenet" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="vezeteknev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="utonev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="posztok" type="tns:PosztArray" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+      <xsd:complexType name="Poszt">
+        <xsd:all>
+          <xsd:element name="posztid" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="nev" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+        </xsd:all>
+      </xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="getjatekosokRequest"/>
+  <wsdl:message name="getjatekosokResponse">
+    <wsdl:part name="getjatekosokReturn" type="tns:Jatekosok"/>
+  </wsdl:message>
+  <wsdl:message name="getcsapatokRequest">
+    <wsdl:part name="vezeteknev" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getcsapatokResponse">
+    <wsdl:part name="getcsapatokReturn" type="tns:Csapatok"/>
+  </wsdl:message>
+  <wsdl:message name="getposztRequest">
+    <wsdl:part name="vezeteknev" type="xsd:string"/>
+  </wsdl:message>
+  <wsdl:message name="getposztResponse">
+    <wsdl:part name="getposztReturn" type="tns:Posztok"/>
+  </wsdl:message>
+  <wsdl:portType name="Soapjatekosok_ModelPortType">
+    <wsdl:operation name="getjatekosok">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getjatekosokRequest"/>
+      <wsdl:output message="tns:getjatekosokResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getcsapatok">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getcsapatokRequest"/>
+      <wsdl:output message="tns:getcsapatokResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getposzt">
+      <wsdl:documentation/>
+      <wsdl:input message="tns:getposztRequest"/>
+      <wsdl:output message="tns:getposztResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Soapjatekosok_ModelBinding" type="tns:Soapjatekosok_ModelPortType">
+    <soap-env:binding xmlns="http://schemas.xmlsoap.org/wsdl/soap/" style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getjatekosok">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/nb1/models/szerver.php?method=getjatekosok" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getcsapatok">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/nb1/models/szerver.php?method=getcsapatok" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getposzt">
+      <soap-env:operation xmlns="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://localhost/nb1/models/szerver.php?method=getposzt" style="rpc"/>
+      <wsdl:input>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap-env:body xmlns="http://schemas.xmlsoap.org/wsdl/soap/" use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Soapjatekosok_Model">
+    <wsdl:documentation/>
+    <wsdl:port name="Soapjatekosok_ModelPort" binding="tns:Soapjatekosok_ModelBinding">
+      <soap-env:address location="http://localhost/nb1/models/szerver.php"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

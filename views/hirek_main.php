@@ -10,6 +10,15 @@
 
 
 
+<?php foreach( $viewData['eredmeny'] as $key => $item ) { ?>
+				<div><fieldset>
+				     <?= $item['velemeny'] ?>
+					<h1><?= $item['bejelentkezes'] ?></h1>
+					<?= $item['datum'] ?>
+				</fieldset></div>	
+				
+			<?php } ?>
+
 
 
 
